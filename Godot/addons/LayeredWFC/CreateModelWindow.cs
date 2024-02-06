@@ -29,7 +29,6 @@ public partial class CreateModelWindow : Window
 	
 	public void OpenSpritesDialog(){
 		_fileDialog.DialogCaller = CallerEnum.Sprites;
-		_fileDialog.
 		_fileDialog.Popup();
 	}
 	

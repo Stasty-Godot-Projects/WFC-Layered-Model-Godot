@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="LayeredWFC"
-run/main_scene="res://addons/LayeredWFC/Views/Plugin_menu.tscn"
+run/main_scene="res://Demo/DemoScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=516
+window/size/viewport_height=324
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [dotnet]
 
@@ -27,3 +34,5 @@ enabled=PackedStringArray("res://addons/LayeredWFC/plugin.cfg")
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
