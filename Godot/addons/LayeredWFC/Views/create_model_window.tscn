@@ -122,6 +122,35 @@ grow_vertical = 2
 text = "Tile size (px)"
 label_settings = SubResource("LabelSettings_xo42c")
 
+[node name="TileSizeBox" type="OptionButton" parent="."]
+offset_left = 360.0
+offset_top = 365.0
+offset_right = 424.0
+offset_bottom = 396.0
+item_count = 3
+popup/item_0/text = "8"
+popup/item_0/id = 0
+popup/item_1/text = "16"
+popup/item_1/id = 1
+popup/item_2/text = "32"
+popup/item_2/id = 2
+
+[node name="SceneName" type="Label" parent="."]
+offset_left = 700.0
+offset_top = 360.0
+offset_right = 1852.0
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scene"
+label_settings = SubResource("LabelSettings_xo42c")
+
+[node name="SceneBox" type="OptionButton" parent="."]
+offset_left = 820.0
+offset_top = 365.0
+offset_right = 1070.0
+offset_bottom = 396.0
+
 [node name="Create model" type="Button" parent="."]
 offset_left = 312.0
 offset_top = 544.0
@@ -135,16 +164,3 @@ offset_top = 544.0
 offset_right = 832.0
 offset_bottom = 575.0
 text = "Cancel"
-
-[node name="OptionButton" type="OptionButton" parent="."]
-offset_left = 360.0
-offset_top = 365.0
-offset_right = 424.0
-offset_bottom = 396.0
-item_count = 3
-popup/item_0/text = "8"
-popup/item_0/id = 0
-popup/item_1/text = "16"
-popup/item_1/id = 1
-popup/item_2/text = "32"
-popup/item_2/id = 2

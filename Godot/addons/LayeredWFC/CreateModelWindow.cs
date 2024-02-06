@@ -2,6 +2,7 @@
 using Godot;
 using System;
 using LayeredWFC.Plugin;
+using System.Collections.Generic;
 
 [Tool]
 public partial class CreateModelWindow : Window
@@ -9,6 +10,7 @@ public partial class CreateModelWindow : Window
 	private LoadTileSetDialog _fileDialog;
 	private Button _spritesButton, _collisionButton, _tileRulesButton, _cancelButton, _createModel;
 	private Label _spritesLabel, _collisionsLabel, _tilesLabel;
+	private OptionButton _sceneListButton;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -25,6 +27,10 @@ public partial class CreateModelWindow : Window
 		_tilesLabel = GetNode("FileTileRules") as Label;
 		_cancelButton = GetNode("Cancel") as Button;
 		_cancelButton.Pressed += OnCancel;
+		_sceneListButton = GetNode("SceneBox") as OptionButton;
+		foreach(var scene in SearchScenes("res://")){
+			_sceneListButton.AddItem(scene);
+		}
 	}
 	
 	public void OpenSpritesDialog(){
@@ -70,6 +76,25 @@ public partial class CreateModelWindow : Window
 	}
 	
 	
-	
+	 private IEnumerable<string> SearchScenes(string directoryPath)
+	{
+
+		var directory = DirAccess.Open(directoryPath);
+		if (directory is null)
+		{
+			GD.PrintErr("Failed to open directory: " + directoryPath);
+			return new List<string>();
+		}
+
+		var scenes = new List<string>();
+		foreach(var dir in directory.GetDirectories()){
+			scenes.AddRange(SearchScenes(directoryPath+dir+"/"));
+		}
+		foreach(var file in directory.GetFiles()){
+			if(file.EndsWith(".tscn") || file.EndsWith(".scn"))
+				scenes.Add(file.Replace(".tscn","").Replace(".scn",""));
+		}
+		return scenes;
+	}
 }
 #endif
