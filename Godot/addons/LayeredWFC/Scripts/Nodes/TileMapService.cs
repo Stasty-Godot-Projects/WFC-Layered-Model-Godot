@@ -12,7 +12,7 @@ namespace LayeredWFC
 		public  IEnumerable<TilesDescription> TilesDescriptions {get; set;}
 		public  IEnumerable<SidesKind> SidesKind {get; set;}
 		
-		public TileMapService(string tilesFileName,string collisionsFileName,string sceneName, int sideSize)
+		public TileMapService(string tilesFileName,string sceneName, int sideSize)
 		{
 			_tilesFileName= tilesFileName;
 			_collisionsFileName = collisionsFileName;
@@ -20,7 +20,10 @@ namespace LayeredWFC
 			_sideSize = sideSize;
 		}
 		
-		
+		public void CreateTileMap(){
+			var tileMap = new WFCTileMap();
+			tileMap
+		}
 	}
 }
 

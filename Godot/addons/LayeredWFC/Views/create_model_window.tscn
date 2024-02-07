@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://pniht2lbgdkc"]
 
-[ext_resource type="Script" path="res://addons/LayeredWFC/CreateModelWindow.cs" id="1_wgx18"]
-[ext_resource type="Script" path="res://addons/LayeredWFC/LoadTileSetDialog.cs" id="2_ws83y"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/CreateModelWindow.cs" id="1_mixpv"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/LoadTileSetDialog.cs" id="2_n1dmr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xo42c"]
 font_size = 30
@@ -9,8 +9,7 @@ font_size = 30
 [node name="CreateModelWindow" type="Window"]
 position = Vector2i(0, 36)
 size = Vector2i(1144, 640)
-visible = false
-script = ExtResource("1_wgx18")
+script = ExtResource("1_mixpv")
 
 [node name="LoadTileSetDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -20,7 +19,7 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 use_native_dialog = true
-script = ExtResource("2_ws83y")
+script = ExtResource("2_n1dmr")
 
 [node name="Sprites" type="Label" parent="."]
 offset_left = 112.0
@@ -52,41 +51,11 @@ offset_right = 1005.0
 offset_bottom = 106.515
 text = "Choose file"
 
-[node name="Collisions" type="Label" parent="."]
-offset_left = 44.0
-offset_top = 184.0
-offset_right = 1196.0
-offset_bottom = 226.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Collisions mapping"
-label_settings = SubResource("LabelSettings_xo42c")
-
-[node name="FileCollisions" type="Label" parent="."]
-offset_left = 536.0
-offset_top = 168.0
-offset_right = 894.0
-offset_bottom = 210.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Choose file"
-label_settings = SubResource("LabelSettings_xo42c")
-horizontal_alignment = 2
-clip_text = true
-text_overrun_behavior = 1
-
-[node name="CollisionsButton" type="Button" parent="."]
-offset_left = 912.0
-offset_top = 175.34
-offset_right = 1005.0
-offset_bottom = 206.34
-text = "Choose file"
-
 [node name="TileRules" type="Label" parent="."]
 offset_left = 120.0
-offset_top = 272.0
+offset_top = 172.0
 offset_right = 1272.0
-offset_bottom = 314.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Tiles rules"
@@ -94,9 +63,9 @@ label_settings = SubResource("LabelSettings_xo42c")
 
 [node name="FileTileRules" type="Label" parent="."]
 offset_left = 536.0
-offset_top = 256.0
+offset_top = 172.0
 offset_right = 894.0
-offset_bottom = 298.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Choose file"
@@ -107,9 +76,9 @@ text_overrun_behavior = 1
 
 [node name="TilesRulesButton" type="Button" parent="."]
 offset_left = 912.0
-offset_top = 262.0
+offset_top = 178.0
 offset_right = 1005.0
-offset_bottom = 293.0
+offset_bottom = 209.0
 text = "Choose file"
 
 [node name="TileSize" type="Label" parent="."]
@@ -150,7 +119,7 @@ offset_left = 820.0
 offset_top = 365.0
 offset_right = 1070.0
 offset_bottom = 396.0
-item_count = 3
+item_count = 9
 selected = 0
 popup/item_0/text = "DemoScene"
 popup/item_0/id = 0
@@ -158,6 +127,18 @@ popup/item_1/text = "Plugin_menu"
 popup/item_1/id = 1
 popup/item_2/text = "create_model_window"
 popup/item_2/id = 2
+popup/item_3/text = "DemoScene"
+popup/item_3/id = 3
+popup/item_4/text = "Plugin_menu"
+popup/item_4/id = 4
+popup/item_5/text = "create_model_window"
+popup/item_5/id = 5
+popup/item_6/text = "DemoScene"
+popup/item_6/id = 6
+popup/item_7/text = "Plugin_menu"
+popup/item_7/id = 7
+popup/item_8/text = "create_model_window"
+popup/item_8/id = 8
 
 [node name="Create model" type="Button" parent="."]
 offset_left = 312.0

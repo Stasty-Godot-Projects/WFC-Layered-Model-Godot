@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://4lmaebiplh08"]
 
-[ext_resource type="Script" path="res://addons/LayeredWFC/PluginView.gd" id="1_rtfoy"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/PluginView.gd" id="1_rtfoy"]
 [ext_resource type="PackedScene" uid="uid://pniht2lbgdkc" path="res://addons/LayeredWFC/Views/create_model_window.tscn" id="2_ve1b6"]
 
 [node name="PluginMenu" type="Control"]

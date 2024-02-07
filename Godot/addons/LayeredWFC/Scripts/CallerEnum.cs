@@ -8,7 +8,6 @@ namespace LayeredWFC.Plugin
 	public enum CallerEnum
 	{
 		Sprites,
-		Collisions,
 		TileRules
 	}
 }

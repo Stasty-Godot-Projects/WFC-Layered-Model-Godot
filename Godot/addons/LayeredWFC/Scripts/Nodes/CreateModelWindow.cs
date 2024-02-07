@@ -17,8 +17,6 @@ public partial class CreateModelWindow : Window
 		_fileDialog= GetNode("LoadTileSetDialog") as LoadTileSetDialog;
 		_spritesButton = GetNode("SpritesButton") as Button;
 		_spritesButton.Pressed += OpenSpritesDialog;
-		_collisionButton = GetNode("CollisionsButton") as Button;
-		_collisionButton.Pressed += OpenCollisionDialog;
 		_tileRulesButton = GetNode("TilesRulesButton") as Button;
 		_tileRulesButton.Pressed += OpenTilesRulesDialog;
 		_fileDialog.FileSelected += OnConfirmDialog;
@@ -35,11 +33,6 @@ public partial class CreateModelWindow : Window
 	
 	public void OpenSpritesDialog(){
 		_fileDialog.DialogCaller = CallerEnum.Sprites;
-		_fileDialog.Popup();
-	}
-	
-	public void OpenCollisionDialog(){
-		_fileDialog.DialogCaller = CallerEnum.Collisions;
 		_fileDialog.Popup();
 	}
 	
