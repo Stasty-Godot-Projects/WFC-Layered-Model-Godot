@@ -9,6 +9,7 @@ font_size = 30
 [node name="CreateModelWindow" type="Window"]
 position = Vector2i(0, 36)
 size = Vector2i(1144, 640)
+visible = false
 script = ExtResource("1_mixpv")
 
 [node name="LoadTileSetDialog" type="FileDialog" parent="."]
@@ -17,7 +18,6 @@ position = Vector2i(380, 239)
 size = Vector2i(600, 400)
 ok_button_text = "Open"
 file_mode = 0
-access = 2
 use_native_dialog = true
 script = ExtResource("2_n1dmr")
 
@@ -119,26 +119,22 @@ offset_left = 820.0
 offset_top = 365.0
 offset_right = 1070.0
 offset_bottom = 396.0
-item_count = 9
+item_count = 7
 selected = 0
 popup/item_0/text = "DemoScene"
 popup/item_0/id = 0
-popup/item_1/text = "Plugin_menu"
+popup/item_1/text = "DemoScene2"
 popup/item_1/id = 1
-popup/item_2/text = "create_model_window"
+popup/item_2/text = "Plugin_menu"
 popup/item_2/id = 2
-popup/item_3/text = "DemoScene"
+popup/item_3/text = "create_model_window"
 popup/item_3/id = 3
-popup/item_4/text = "Plugin_menu"
+popup/item_4/text = "DemoScene"
 popup/item_4/id = 4
-popup/item_5/text = "create_model_window"
+popup/item_5/text = "Plugin_menu"
 popup/item_5/id = 5
-popup/item_6/text = "DemoScene"
+popup/item_6/text = "create_model_window"
 popup/item_6/id = 6
-popup/item_7/text = "Plugin_menu"
-popup/item_7/id = 7
-popup/item_8/text = "create_model_window"
-popup/item_8/id = 8
 
 [node name="Create model" type="Button" parent="."]
 offset_left = 312.0

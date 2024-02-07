@@ -1,7 +1,7 @@
 #if TOOLS
 using Godot;
 using System;
-using LayeredWFC.Plugin;
+using LayeredWFC;
 
 [Tool]
 public partial class LoadTileSetDialog : FileDialog

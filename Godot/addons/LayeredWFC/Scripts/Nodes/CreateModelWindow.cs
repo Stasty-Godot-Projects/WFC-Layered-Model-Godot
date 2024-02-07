@@ -1,16 +1,17 @@
 #if TOOLS
 using Godot;
 using System;
-using LayeredWFC.Plugin;
+using LayeredWFC;
 using System.Collections.Generic;
+using System.Linq;
 
 [Tool]
 public partial class CreateModelWindow : Window
 {
 	private LoadTileSetDialog _fileDialog;
 	private Button _spritesButton, _collisionButton, _tileRulesButton, _cancelButton, _createModel;
-	private Label _spritesLabel, _collisionsLabel, _tilesLabel;
-	private OptionButton _sceneListButton;
+	private Label _spritesLabel, _tilesLabel;
+	private OptionButton _sceneListButton, _tileSizeListButton;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -21,7 +22,6 @@ public partial class CreateModelWindow : Window
 		_tileRulesButton.Pressed += OpenTilesRulesDialog;
 		_fileDialog.FileSelected += OnConfirmDialog;
 		_spritesLabel = GetNode("FileSprites") as Label;
-		_collisionsLabel = GetNode("FileCollisions") as Label;
 		_tilesLabel = GetNode("FileTileRules") as Label;
 		_cancelButton = GetNode("Cancel") as Button;
 		_cancelButton.Pressed += OnCancel;
@@ -29,15 +29,24 @@ public partial class CreateModelWindow : Window
 		foreach(var scene in SearchScenes("res://")){
 			_sceneListButton.AddItem(scene);
 		}
+		_tileSizeListButton = GetNode("TileSizeBox") as OptionButton;
+		_createModel = GetNode("Create model") as Button;
+		_createModel.Pressed += OnCreateModel;
 	}
 	
-	public void OpenSpritesDialog(){
+	public void OpenSpritesDialog()
+	{
+		_fileDialog.ClearFilters();
 		_fileDialog.DialogCaller = CallerEnum.Sprites;
+		_fileDialog.AddFilter("*.png, *.jpg","Images");
 		_fileDialog.Popup();
 	}
 	
-	public void OpenTilesRulesDialog(){
+	public void OpenTilesRulesDialog()
+	{
+		_fileDialog.ClearFilters();
 		_fileDialog.DialogCaller = CallerEnum.TileRules;
+		_fileDialog.AddFilter("*.json","ConfigFile");
 		_fileDialog.Popup();
 	}
 	
@@ -47,9 +56,6 @@ public partial class CreateModelWindow : Window
 		{
 			case CallerEnum.TileRules:
 				_tilesLabel.Text = path;
-				break;
-			case CallerEnum.Collisions:
-				_collisionsLabel.Text = path;
 				break;
 			case CallerEnum.Sprites:
 			default:
@@ -68,6 +74,16 @@ public partial class CreateModelWindow : Window
 		this.Hide();
 	}
 	
+	public void ShowPopUp(){
+		this.Show();
+	}
+	
+	public void OnCreateModel(){
+		var sizeItemId = _tileSizeListButton.GetSelectedId();
+		var itemText = _tileSizeListButton.GetItemText(sizeItemId);
+		var tileMapService = new TileMapService(_spritesLabel.Text,"Demo", Int32.Parse(itemText));
+		tileMapService.CreateTileMap();
+	}
 	
 	 private IEnumerable<string> SearchScenes(string directoryPath)
 	{
@@ -83,7 +99,7 @@ public partial class CreateModelWindow : Window
 		foreach(var dir in directory.GetDirectories()){
 			scenes.AddRange(SearchScenes(directoryPath+dir+"/"));
 		}
-		foreach(var file in directory.GetFiles()){
+		foreach(var file in directory.GetFiles().Distinct()){
 			if(file.EndsWith(".tscn") || file.EndsWith(".scn"))
 				scenes.Add(file.Replace(".tscn","").Replace(".scn",""));
 		}

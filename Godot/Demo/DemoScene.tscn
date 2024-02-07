@@ -1,8 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://digjpyncu7l7w"]
+[gd_scene load_steps=40 format=3 uid="uid://digjpyncu7l7w"]
 
 [ext_resource type="Script" path="res://Demo/Scripts/CharacterBody2D.cs" id="1_ejwx2"]
 [ext_resource type="Texture2D" uid="uid://b58tq1acxnnkk" path="res://Demo/Sprites/main03Final.png" id="1_gk3ml"]
 [ext_resource type="Material" uid="uid://bb1spo37jyhdm" path="res://Demo/Scripts/Shaders/smoothpixel.tres" id="2_2mocm"]
+[ext_resource type="Texture2D" uid="uid://jc3vvf7qixff" path="res://Demo/Sprites/tilesTests.png" id="4_n75kn"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/WFCTileMap.cs" id="4_reqj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4csj"]
 atlas = ExtResource("1_gk3ml")
@@ -221,6 +223,18 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpxun"]
 size = Vector2(12, 5)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdv28"]
+texture = ExtResource("4_n75kn")
+
+[sub_resource type="TileSet" id="TileSet_bq7xv"]
+sources/0 = SubResource("TileSetAtlasSource_pdv28")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rd2s4"]
+texture = ExtResource("4_n75kn")
+
+[sub_resource type="TileSet" id="TileSet_jka86"]
+sources/0 = SubResource("TileSetAtlasSource_rd2s4")
+
 [node name="DemoScene" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -238,3 +252,13 @@ autoplay = "Still"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-1, 15.5)
 shape = SubResource("RectangleShape2D_xpxun")
+
+[node name="@TileMap@39097" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bq7xv")
+format = 2
+script = ExtResource("4_reqj6")
+
+[node name="@TileMap@22427" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_jka86")
+format = 2
+script = ExtResource("4_reqj6")
