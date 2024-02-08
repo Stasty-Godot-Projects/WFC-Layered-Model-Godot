@@ -4,6 +4,7 @@ using System;
 using LayeredWFC;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 [Tool]
 public partial class CreateModelWindow : Window
@@ -38,7 +39,7 @@ public partial class CreateModelWindow : Window
 	{
 		_fileDialog.ClearFilters();
 		_fileDialog.DialogCaller = CallerEnum.Sprites;
-		_fileDialog.AddFilter("*.png, *.jpg","Images");
+		_fileDialog.AddFilter("*.png","Images");
 		_fileDialog.Popup();
 	}
 	
@@ -82,7 +83,11 @@ public partial class CreateModelWindow : Window
 		var sizeItemId = _tileSizeListButton.GetSelectedId();
 		var itemText = _tileSizeListButton.GetItemText(sizeItemId);
 		var tileMapService = new TileMapService(_spritesLabel.Text,"Demo", Int32.Parse(itemText));
+		var config = ReadConfigFile(_tilesLabel.Text);
+		tileMapService.TilesDescriptions = config.TilesDescription;
+		tileMapService.SidesKind = config.SidesDescription;
 		tileMapService.CreateTileMap();
+		this.Hide();
 	}
 	
 	 private IEnumerable<string> SearchScenes(string directoryPath)
@@ -104,6 +109,14 @@ public partial class CreateModelWindow : Window
 				scenes.Add(file.Replace(".tscn","").Replace(".scn",""));
 		}
 		return scenes;
+	}
+	
+	private WFCConfig ReadConfigFile(string filePath)
+	{
+		using var file = FileAccess.Open(filePath, FileAccess.ModeFlags.Read);
+		string content = file.GetAsText();
+		var configuration = JsonSerializer.Deserialize<WFCConfig>(content);
+		return configuration;
 	}
 }
 #endif

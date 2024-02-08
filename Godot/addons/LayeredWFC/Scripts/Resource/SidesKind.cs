@@ -8,9 +8,9 @@ public partial class SidesKind: Resource
 	[Export]
 	public int Id {get; set;}
 	[Export]
-	public string ReadAbleName {get; set;}
+	public string ReadableName {get; set;}
 	[Export]
-	 public float Propability {get; set;}
+	public int[] Adjacencies {get; set;}
 }
 
 

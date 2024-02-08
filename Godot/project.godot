@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="LayeredWFC"
-run/main_scene="res://addons/LayeredWFC/Views/Plugin_menu.tscn"
+run/main_scene="res://Demo/DemoScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=516
 window/size/viewport_height=324
-window/stretch/aspect="ignore"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 
 [dotnet]
 

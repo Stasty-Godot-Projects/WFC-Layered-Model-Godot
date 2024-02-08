@@ -10,8 +10,8 @@ namespace LayeredWFC
 		private string _tilesFileName, _sceneName;
 		private int _sideSize;
 		
-		public  IEnumerable<TilesDescription> TilesDescriptions {get; set;}
-		public  IEnumerable<SidesKind> SidesKind {get; set;}
+		public  IEnumerable<TilesDescription> TilesDescriptions {get; set;} = null;
+		public  IEnumerable<SidesKind> SidesKind {get; set;} = null;
 		
 		public TileMapService(string tilesFileName,string sceneName, int sideSize)
 		{
@@ -26,13 +26,25 @@ namespace LayeredWFC
 			var tileSet = new TileSet();
 			var tileSize = new Vector2I(_sideSize,_sideSize);
 			tileSet.TileSize = tileSize;
-			var tilesAtlas = new TileSetAtlasSource();
-			var texture = (Texture2D)ResourceLoader.Load(_tilesFileName);
-			tilesAtlas.Texture = texture;
-			tilesAtlas.TextureRegionSize = tileSize;
+			var tilesAtlas=GetTextureAtlas(tileSize, out int Cols, out int Rows);
+			tileMap.Cols = Cols;
+			tileMap.Rows = Rows;
 			var tileSetId = tileSet.AddSource(tilesAtlas);
 			tileMap.TileSet = tileSet;
-			var scenePath = GetScenePath(_sceneName, "res://")
+			if(SidesKind is null || TilesDescriptions is null)
+				return;
+			tileMap.SidesDescription = SidesKind.ToArray();
+			tileMap.TilesDescription = TilesDescriptions.Select(x => {
+				GD.Print(x.Id);
+				return new TilesDescriptionResource(){
+					Id = x.Id,
+					Biome = x.Biome,
+					SideKind = x.SideKind.Select(y => SidesKind.First(z => y == z.Id)).ToArray(),
+					CornerKind = x.CornerKind.Select(y => SidesKind.First(z => y == z.Id)).ToArray()
+			};
+			}
+				).ToArray();
+			var scenePath = GetScenePath(_sceneName, "res://");
 			AddTileMapToScene(scenePath, tileMap);
 		}
 		
@@ -79,6 +91,23 @@ namespace LayeredWFC
 			DirAccess.RemoveAbsolute(scenePath);
 			var error = ResourceSaver.Save(scene,scenePath);
 			GD.Print(error);
+		}
+		
+		private TileSetAtlasSource GetTextureAtlas(Vector2I tileSize, out int Cols, out int Rows)
+		{
+			var tilesAtlas = new TileSetAtlasSource();
+			var texture = (Texture2D)ResourceLoader.Load(_tilesFileName);
+			tilesAtlas.Texture = texture;
+			tilesAtlas.TextureRegionSize = tileSize;
+			var atlasSize = tilesAtlas.GetAtlasGridSize();
+			Cols = atlasSize.X;
+			Rows = atlasSize.Y;
+			for(int i = 0; i<Cols;i++){
+				for(int j = 0; i<Rows;i++){
+					tilesAtlas.CreateTile(new Vector2I(i,j), tileSize);
+				}
+			}
+			return tilesAtlas;
 		}
 	}
 }

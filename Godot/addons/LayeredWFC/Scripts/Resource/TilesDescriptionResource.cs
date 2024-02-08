@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public partial class TilesDescriptionResource: Resource
 {
 	[Export]
+	public int Id {get; set;}
+	[Export]
 	public string Biome {get; set;}
 	[Export]
 	public SidesKind[] SideKind {get; set;}
