@@ -3,12 +3,11 @@ using Godot;
 using System;
 
 
-namespace LayeredWFC.Plugin
+namespace LayeredWFC
 {
 	public enum CallerEnum
 	{
 		Sprites,
-		Collisions,
 		TileRules
 	}
 }

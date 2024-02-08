@@ -9,4 +9,4 @@ func _ready():
 
 
 func _on_get_main_model_window_pressed():
-	create_model_window.show()
+	create_model_window.ShowPopUp()

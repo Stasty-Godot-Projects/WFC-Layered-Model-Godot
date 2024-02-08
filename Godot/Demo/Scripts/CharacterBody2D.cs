@@ -26,7 +26,7 @@ public partial class CharacterBody2D : Godot.CharacterBody2D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, Speed);
 		}
-		GD.Print(direction.X);
+		//GD.Print(direction.X);
 		
 		if(direction.X<0 || direction.Y!=0)
 			_sprite2d.Animation = "Go_left";

@@ -1,8 +1,762 @@
-[gd_scene load_steps=34 format=3 uid="uid://digjpyncu7l7w"]
+[gd_scene load_steps=134 format=3 uid="uid://digjpyncu7l7w"]
 
 [ext_resource type="Script" path="res://Demo/Scripts/CharacterBody2D.cs" id="1_ejwx2"]
 [ext_resource type="Texture2D" uid="uid://b58tq1acxnnkk" path="res://Demo/Sprites/main03Final.png" id="1_gk3ml"]
 [ext_resource type="Material" uid="uid://bb1spo37jyhdm" path="res://Demo/Scripts/Shaders/smoothpixel.tres" id="2_2mocm"]
+[ext_resource type="Texture2D" uid="uid://jc3vvf7qixff" path="res://Demo/Sprites/tilesTests.png" id="4_nbjho"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/WFCTileMap.cs" id="5_he3f0"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Resource/SidesKind.cs" id="6_5qhb1"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Resource/TilesDescriptionResource.cs" id="7_xb4k5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j0df3"]
+texture = ExtResource("4_nbjho")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_b25fh"]
+sources/0 = SubResource("TileSetAtlasSource_j0df3")
+
+[sub_resource type="Resource" id="Resource_bj5te"]
+script = ExtResource("6_5qhb1")
+Id = 1
+ReadableName = "Ground"
+Adjacencies = PackedInt32Array(1, 2, 3)
+
+[sub_resource type="Resource" id="Resource_tvfwk"]
+script = ExtResource("6_5qhb1")
+Id = 4
+ReadableName = "Grass"
+Adjacencies = PackedInt32Array(3, 4)
+
+[sub_resource type="Resource" id="Resource_si2bd"]
+script = ExtResource("7_xb4k5")
+Id = 1
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_jbnkg"]
+script = ExtResource("6_5qhb1")
+Id = 3
+ReadableName = "Part_Grass"
+Adjacencies = PackedInt32Array(1, 3, 4)
+
+[sub_resource type="Resource" id="Resource_6ypve"]
+script = ExtResource("7_xb4k5")
+Id = 2
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ymywd"]
+script = ExtResource("7_xb4k5")
+Id = 3
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_qyk0f"]
+script = ExtResource("7_xb4k5")
+Id = 4
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_vc151"]
+script = ExtResource("7_xb4k5")
+Id = 5
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ahyri"]
+script = ExtResource("7_xb4k5")
+Id = 6
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_cx41t"]
+script = ExtResource("7_xb4k5")
+Id = 7
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_a761e"]
+script = ExtResource("7_xb4k5")
+Id = 8
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_155ag"]
+script = ExtResource("7_xb4k5")
+Id = 9
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_ox4o7"]
+script = ExtResource("7_xb4k5")
+Id = 10
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_m0s1b"]
+script = ExtResource("7_xb4k5")
+Id = 11
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_roawx"]
+script = ExtResource("7_xb4k5")
+Id = 12
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_7dehp"]
+script = ExtResource("7_xb4k5")
+Id = 13
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_7ivfo"]
+script = ExtResource("7_xb4k5")
+Id = 14
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_i8jmk"]
+script = ExtResource("7_xb4k5")
+Id = 15
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_xb8r0"]
+script = ExtResource("7_xb4k5")
+Id = 16
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_nxqlf"]
+script = ExtResource("7_xb4k5")
+Id = 17
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_pao4k"]
+script = ExtResource("7_xb4k5")
+Id = 18
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_o61wm"]
+script = ExtResource("6_5qhb1")
+Id = 2
+ReadableName = "Cracked_Ground"
+Adjacencies = PackedInt32Array(1, 2)
+
+[sub_resource type="Resource" id="Resource_11lxx"]
+script = ExtResource("7_xb4k5")
+Id = 19
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_eftpi"]
+script = ExtResource("7_xb4k5")
+Id = 20
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_newop"]
+script = ExtResource("7_xb4k5")
+Id = 21
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ytr8c"]
+script = ExtResource("7_xb4k5")
+Id = 22
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_cpvtm"]
+script = ExtResource("7_xb4k5")
+Id = 23
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_xtq48"]
+script = ExtResource("7_xb4k5")
+Id = 24
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_w2a6i"]
+script = ExtResource("7_xb4k5")
+Id = 25
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_y6cdy"]
+script = ExtResource("7_xb4k5")
+Id = 26
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_i5sfb"]
+script = ExtResource("7_xb4k5")
+Id = 27
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_7vpcx"]
+script = ExtResource("7_xb4k5")
+Id = 28
+Biome = "Grass"
+SideKind = [SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_wwxwy"]
+script = ExtResource("7_xb4k5")
+Id = 29
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ubtbn"]
+script = ExtResource("7_xb4k5")
+Id = 30
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_rs72a"]
+script = ExtResource("7_xb4k5")
+Id = 31
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_1o0mk"]
+script = ExtResource("7_xb4k5")
+Id = 32
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_0vfh8"]
+script = ExtResource("7_xb4k5")
+Id = 33
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_aslbq"]
+script = ExtResource("7_xb4k5")
+Id = 34
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_qst3n"]
+script = ExtResource("7_xb4k5")
+Id = 35
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_0lydk"]
+script = ExtResource("7_xb4k5")
+Id = 36
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_lq6mb"]
+script = ExtResource("7_xb4k5")
+Id = 37
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_rgyq2"]
+script = ExtResource("7_xb4k5")
+Id = 38
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ka3yw"]
+script = ExtResource("7_xb4k5")
+Id = 39
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_dvmlm"]
+script = ExtResource("7_xb4k5")
+Id = 40
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_otv4e"]
+script = ExtResource("7_xb4k5")
+Id = 41
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_n40e3"]
+script = ExtResource("7_xb4k5")
+Id = 42
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_0eogi"]
+script = ExtResource("7_xb4k5")
+Id = 43
+Biome = "Grass"
+SideKind = [SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_4aspr"]
+script = ExtResource("7_xb4k5")
+Id = 44
+Biome = "Grass"
+SideKind = [SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_op52h"]
+script = ExtResource("7_xb4k5")
+Id = 45
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_nhecs"]
+script = ExtResource("7_xb4k5")
+Id = 46
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_0ukkj"]
+script = ExtResource("7_xb4k5")
+Id = 47
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_54wqx"]
+script = ExtResource("7_xb4k5")
+Id = 48
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_ojpdn"]
+script = ExtResource("7_xb4k5")
+Id = 49
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_vosee"]
+script = ExtResource("7_xb4k5")
+Id = 50
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_hwyuh"]
+script = ExtResource("7_xb4k5")
+Id = 51
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_j86ee"]
+script = ExtResource("7_xb4k5")
+Id = 52
+Biome = "Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_ujtk3"]
+script = ExtResource("7_xb4k5")
+Id = 53
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_u040q"]
+script = ExtResource("7_xb4k5")
+Id = 54
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_06hva"]
+script = ExtResource("7_xb4k5")
+Id = 55
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_w0anj"]
+script = ExtResource("7_xb4k5")
+Id = 56
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_iyk3k"]
+script = ExtResource("7_xb4k5")
+Id = 57
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_cogqc"]
+script = ExtResource("7_xb4k5")
+Id = 58
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_wqt0l"]
+script = ExtResource("7_xb4k5")
+Id = 59
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_t6ucj"]
+script = ExtResource("7_xb4k5")
+Id = 60
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_71mty"]
+script = ExtResource("7_xb4k5")
+Id = 61
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_bvb71"]
+script = ExtResource("7_xb4k5")
+Id = 62
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_i5tqw"]
+script = ExtResource("7_xb4k5")
+Id = 63
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_586wt"]
+script = ExtResource("7_xb4k5")
+Id = 64
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_7i6m7"]
+script = ExtResource("7_xb4k5")
+Id = 65
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_wvqen"]
+script = ExtResource("7_xb4k5")
+Id = 66
+Biome = "Grass"
+SideKind = [SubResource("Resource_jbnkg"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_jbnkg")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_akatu"]
+script = ExtResource("7_xb4k5")
+Id = 67
+Biome = "Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_2y4ad"]
+script = ExtResource("7_xb4k5")
+Id = 68
+Biome = "Grass"
+SideKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_qitsd"]
+script = ExtResource("7_xb4k5")
+Id = 69
+Biome = "Grass"
+SideKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+CornerKind = [SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk"), SubResource("Resource_tvfwk")]
+
+[sub_resource type="Resource" id="Resource_k038p"]
+script = ExtResource("7_xb4k5")
+Id = 70
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_tvfwk"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_r3oi3"]
+script = ExtResource("7_xb4k5")
+Id = 71
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_o0ngf"]
+script = ExtResource("7_xb4k5")
+Id = 72
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_erd5x"]
+script = ExtResource("7_xb4k5")
+Id = 73
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_a5kop"]
+script = ExtResource("7_xb4k5")
+Id = 74
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_41xmx"]
+script = ExtResource("7_xb4k5")
+Id = 75
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_wsg31"]
+script = ExtResource("7_xb4k5")
+Id = 76
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_q4wjt"]
+script = ExtResource("7_xb4k5")
+Id = 77
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_0xg33"]
+script = ExtResource("7_xb4k5")
+Id = 78
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_501ha"]
+script = ExtResource("7_xb4k5")
+Id = 79
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ql2w3"]
+script = ExtResource("7_xb4k5")
+Id = 80
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_0bnqc"]
+script = ExtResource("7_xb4k5")
+Id = 81
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_ydoe0"]
+script = ExtResource("7_xb4k5")
+Id = 82
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_aqk1o"]
+script = ExtResource("7_xb4k5")
+Id = 83
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_tvyb3"]
+script = ExtResource("7_xb4k5")
+Id = 84
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+
+[sub_resource type="Resource" id="Resource_fsqen"]
+script = ExtResource("7_xb4k5")
+Id = 85
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm")]
+CornerKind = [SubResource("Resource_o61wm"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_da4ak"]
+script = ExtResource("7_xb4k5")
+Id = 86
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_wb31e"]
+script = ExtResource("7_xb4k5")
+Id = 87
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_oiepa"]
+script = ExtResource("7_xb4k5")
+Id = 88
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_r72fv"]
+script = ExtResource("7_xb4k5")
+Id = 89
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+
+[sub_resource type="Resource" id="Resource_nfpf6"]
+script = ExtResource("7_xb4k5")
+Id = 90
+Biome = "Part_Grass"
+SideKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
+CornerKind = [SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te"), SubResource("Resource_bj5te")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4csj"]
 atlas = ExtResource("1_gk3ml")
@@ -222,6 +976,17 @@ animations = [{
 size = Vector2(12, 5)
 
 [node name="DemoScene" type="Node2D"]
+
+[node name="_TileMap_21884" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_b25fh")
+format = 2
+script = ExtResource("5_he3f0")
+TilesDescription = [SubResource("Resource_si2bd"), SubResource("Resource_6ypve"), SubResource("Resource_ymywd"), SubResource("Resource_qyk0f"), SubResource("Resource_vc151"), SubResource("Resource_ahyri"), SubResource("Resource_cx41t"), SubResource("Resource_a761e"), SubResource("Resource_155ag"), SubResource("Resource_ox4o7"), SubResource("Resource_m0s1b"), SubResource("Resource_roawx"), SubResource("Resource_7dehp"), SubResource("Resource_7ivfo"), SubResource("Resource_i8jmk"), SubResource("Resource_xb8r0"), SubResource("Resource_nxqlf"), SubResource("Resource_pao4k"), SubResource("Resource_11lxx"), SubResource("Resource_eftpi"), SubResource("Resource_newop"), SubResource("Resource_ytr8c"), SubResource("Resource_cpvtm"), SubResource("Resource_xtq48"), SubResource("Resource_w2a6i"), SubResource("Resource_y6cdy"), SubResource("Resource_i5sfb"), SubResource("Resource_7vpcx"), SubResource("Resource_wwxwy"), SubResource("Resource_ubtbn"), SubResource("Resource_rs72a"), SubResource("Resource_1o0mk"), SubResource("Resource_0vfh8"), SubResource("Resource_aslbq"), SubResource("Resource_qst3n"), SubResource("Resource_0lydk"), SubResource("Resource_lq6mb"), SubResource("Resource_rgyq2"), SubResource("Resource_ka3yw"), SubResource("Resource_dvmlm"), SubResource("Resource_otv4e"), SubResource("Resource_n40e3"), SubResource("Resource_0eogi"), SubResource("Resource_4aspr"), SubResource("Resource_op52h"), SubResource("Resource_nhecs"), SubResource("Resource_0ukkj"), SubResource("Resource_54wqx"), SubResource("Resource_ojpdn"), SubResource("Resource_vosee"), SubResource("Resource_hwyuh"), SubResource("Resource_j86ee"), SubResource("Resource_ujtk3"), SubResource("Resource_u040q"), SubResource("Resource_06hva"), SubResource("Resource_w0anj"), SubResource("Resource_iyk3k"), SubResource("Resource_cogqc"), SubResource("Resource_wqt0l"), SubResource("Resource_t6ucj"), SubResource("Resource_71mty"), SubResource("Resource_bvb71"), SubResource("Resource_i5tqw"), SubResource("Resource_586wt"), SubResource("Resource_7i6m7"), SubResource("Resource_wvqen"), SubResource("Resource_akatu"), SubResource("Resource_2y4ad"), SubResource("Resource_qitsd"), SubResource("Resource_k038p"), SubResource("Resource_r3oi3"), SubResource("Resource_o0ngf"), SubResource("Resource_erd5x"), SubResource("Resource_a5kop"), SubResource("Resource_41xmx"), SubResource("Resource_wsg31"), SubResource("Resource_q4wjt"), SubResource("Resource_0xg33"), SubResource("Resource_501ha"), SubResource("Resource_ql2w3"), SubResource("Resource_0bnqc"), SubResource("Resource_ydoe0"), SubResource("Resource_aqk1o"), SubResource("Resource_tvyb3"), SubResource("Resource_fsqen"), SubResource("Resource_da4ak"), SubResource("Resource_wb31e"), SubResource("Resource_oiepa"), SubResource("Resource_r72fv"), SubResource("Resource_nfpf6")]
+SidesDescription = [SubResource("Resource_bj5te"), SubResource("Resource_o61wm"), SubResource("Resource_jbnkg"), SubResource("Resource_tvfwk")]
+Rows = 9
+Cols = 10
+_size = Vector2i(12, 12)
+_seed = 4
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(252, 156)
