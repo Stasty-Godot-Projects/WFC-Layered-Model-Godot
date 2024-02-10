@@ -435,11 +435,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\UnderBounders\\WFC_Godot.API\\WFC_Godot.API.csproj",
+      "projectUniqueName": "D:\\WFC-Layered-Model-Godot\\WFC_Godot.API\\WFC_Godot.API.csproj",
       "projectName": "WFC_Godot.API",
-      "projectPath": "D:\\UnderBounders\\WFC_Godot.API\\WFC_Godot.API.csproj",
+      "projectPath": "D:\\WFC-Layered-Model-Godot\\WFC_Godot.API\\WFC_Godot.API.csproj",
       "packagesPath": "C:\\Users\\Pc\\.nuget\\packages\\",
-      "outputPath": "D:\\UnderBounders\\WFC_Godot.API\\obj\\",
+      "outputPath": "D:\\WFC-Layered-Model-Godot\\WFC_Godot.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
