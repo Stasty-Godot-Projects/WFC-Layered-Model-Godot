@@ -22,11 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ModuleClassifier.py" TargetPath="Classifier.py">
+    <Content Include="ModuleClassifier.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Python/Classifier.py" TargetPath="Classifier.py">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+    </Content>  </ItemGroup>
 </Project>
