@@ -15,7 +15,7 @@ To learn more head to: [Original Repository](https://github.com/mxgmn/WaveFuncti
     2. Propagation: propagate information gained on the previous observation step.  
 2. By now all the wave elements are either in a completely observed state (all the coefficients except one being zero) or in the contradictory state (all the coefficients being zero). At last it return the output.  
 
-Used libraries in the project:
+# Used libraries in the project
 (Godot)[https://github.com/godotengine] - game engine this is plugin for.  
 (Refit)[https://github.com/reactiveui/refit] - allows connection to the api automatically.  
 (Python.Net)[https://github.com/pythonnet/pythonnet] - Eneables to integrate Python Code into C#.  
