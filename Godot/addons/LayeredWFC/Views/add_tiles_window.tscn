@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmsa35kspyyei"]
+
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/AddTilesWindow.cs" id="1_jt0i1"]
+[ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/Nodes/LoadTileSetDialog.cs" id="2_crsl0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xo42c"]
+font_size = 30
+
+[node name="AddTilesWindow" type="Window"]
+position = Vector2i(0, 36)
+size = Vector2i(1144, 640)
+script = ExtResource("1_jt0i1")
+
+[node name="ModelUnderTraining" type="AcceptDialog" parent="."]
+title = "Model under training"
+dialog_text = "Model is under training please wait"
+
+[node name="LoadTileSetDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(380, 239)
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+use_native_dialog = true
+script = ExtResource("2_crsl0")
+
+[node name="Sprites" type="Label" parent="."]
+offset_left = 112.0
+offset_top = 88.0
+offset_right = 1264.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Spritesheet"
+label_settings = SubResource("LabelSettings_xo42c")
+
+[node name="FileSprites" type="Label" parent="."]
+offset_left = 536.0
+offset_top = 72.0
+offset_right = 894.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Choose file"
+label_settings = SubResource("LabelSettings_xo42c")
+horizontal_alignment = 2
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="SpritesButton" type="Button" parent="."]
+offset_left = 912.0
+offset_top = 75.515
+offset_right = 1005.0
+offset_bottom = 106.515
+text = "Choose file"
+
+[node name="TileSize" type="Label" parent="."]
+offset_left = 108.5
+offset_top = 360.0
+offset_right = 1260.5
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Tile size (px)"
+label_settings = SubResource("LabelSettings_xo42c")
+
+[node name="TileSizeBox" type="OptionButton" parent="."]
+offset_left = 360.0
+offset_top = 365.0
+offset_right = 424.0
+offset_bottom = 396.0
+item_count = 3
+popup/item_0/text = "8"
+popup/item_0/id = 0
+popup/item_1/text = "16"
+popup/item_1/id = 1
+popup/item_2/text = "32"
+popup/item_2/id = 2
+
+[node name="SceneName" type="Label" parent="."]
+offset_left = 700.0
+offset_top = 360.0
+offset_right = 1852.0
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scene"
+label_settings = SubResource("LabelSettings_xo42c")
+
+[node name="SceneBox" type="OptionButton" parent="."]
+offset_left = 820.0
+offset_top = 365.0
+offset_right = 1070.0
+offset_bottom = 396.0
+item_count = 12
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "DemoScene"
+popup/item_0/id = 0
+popup/item_1/text = "Plugin_menu"
+popup/item_1/id = 1
+popup/item_2/text = "add_tiles_window"
+popup/item_2/id = 2
+popup/item_3/text = "create_model_window"
+popup/item_3/id = 3
+popup/item_4/text = "DemoScene"
+popup/item_4/id = 4
+popup/item_5/text = "Plugin_menu"
+popup/item_5/id = 5
+popup/item_6/text = "add_tiles_window"
+popup/item_6/id = 6
+popup/item_7/text = "create_model_window"
+popup/item_7/id = 7
+popup/item_8/text = "DemoScene"
+popup/item_8/id = 8
+popup/item_9/text = "Plugin_menu"
+popup/item_9/id = 9
+popup/item_10/text = "add_tiles_window"
+popup/item_10/id = 10
+popup/item_11/text = "create_model_window"
+popup/item_11/id = 11
+
+[node name="Add tiles" type="Button" parent="."]
+offset_left = 312.0
+offset_top = 544.0
+offset_right = 424.0
+offset_bottom = 575.0
+text = "Create model"
+
+[node name="Cancel" type="Button" parent="."]
+offset_left = 720.0
+offset_top = 544.0
+offset_right = 832.0
+offset_bottom = 575.0
+text = "Cancel"

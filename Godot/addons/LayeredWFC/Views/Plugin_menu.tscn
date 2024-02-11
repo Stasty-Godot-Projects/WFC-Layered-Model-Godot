@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4lmaebiplh08"]
+[gd_scene load_steps=4 format=3 uid="uid://4lmaebiplh08"]
 
 [ext_resource type="Script" path="res://addons/LayeredWFC/Scripts/PluginView.gd" id="1_dle7q"]
 [ext_resource type="PackedScene" uid="uid://pniht2lbgdkc" path="res://addons/LayeredWFC/Views/create_model_window.tscn" id="2_ve1b6"]
+[ext_resource type="PackedScene" uid="uid://dmsa35kspyyei" path="res://addons/LayeredWFC/Views/add_tiles_window.tscn" id="3_07sty"]
 
 [node name="PluginMenu" type="Control"]
 layout_mode = 3
@@ -30,28 +31,29 @@ alignment = 1
 layout_mode = 2
 text = "Create new model"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="AddTilesButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Add tile"
+text = "Add tiles"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Current API key:"
+text = "Current API url:"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
+[node name="ApiURLEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(544.335, 0)
 layout_mode = 2
-editable = false
-virtual_keyboard_enabled = false
+placeholder_text = "localhost:1111/"
 drag_and_drop_selection_enabled = false
-
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
 
 [node name="CreateModelWindow" parent="." instance=ExtResource("2_ve1b6")]
 
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+
+[node name="AddTilesWindow" parent="." instance=ExtResource("3_07sty")]
+visible = false
+
 [connection signal="pressed" from="VBoxContainer/GetMainModelWindow" to="." method="_on_get_main_model_window_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="AddTileModalWindow"]
+[connection signal="pressed" from="VBoxContainer/AddTilesButton" to="." method="_on_add_tiles_button_pressed"]

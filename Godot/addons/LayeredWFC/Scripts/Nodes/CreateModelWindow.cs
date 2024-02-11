@@ -13,6 +13,7 @@ public partial class CreateModelWindow : Window
 	private Button _spritesButton, _collisionButton, _tileRulesButton, _cancelButton, _createModel;
 	private Label _spritesLabel, _tilesLabel;
 	private OptionButton _sceneListButton, _tileSizeListButton;
+	private string _apiUrl;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -75,14 +76,17 @@ public partial class CreateModelWindow : Window
 		this.Hide();
 	}
 	
-	public void ShowPopUp(){
+	public void ShowPopUp(string apiUrl){
+		_apiUrl = apiUrl;
 		this.Show();
 	}
 	
 	public void OnCreateModel(){
 		var sizeItemId = _tileSizeListButton.GetSelectedId();
 		var itemText = _tileSizeListButton.GetItemText(sizeItemId);
-		var tileMapService = new TileMapService(_spritesLabel.Text,"Demo", Int32.Parse(itemText));
+		var sceneItemId = _sceneListButton.GetSelectedId();
+		var sceneName = _sceneListButton.GetItemText(sceneItemId);
+		var tileMapService = new TileMapService(_spritesLabel.Text,sceneName, Int32.Parse(itemText), _apiUrl);
 		var config = ReadConfigFile(_tilesLabel.Text);
 		tileMapService.TilesDescriptions = config.TilesDescription;
 		tileMapService.SidesKind = config.SidesDescription;
