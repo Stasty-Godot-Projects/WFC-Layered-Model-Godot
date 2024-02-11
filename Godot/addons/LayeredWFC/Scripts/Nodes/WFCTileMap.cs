@@ -6,13 +6,9 @@ using System.Collections.Generic;
 public partial class WFCTileMap : TileMap
 {
 	[Export]
-	public TilesDescriptionResource[] TilesDescription { get; set; } = null;
+	public WFCTileMapData Data {get; set;} = null;
 	[Export]
-	public SidesKind[] SidesDescription { get; set; } = null;
-	[Export]
-	public int Rows { get; set; }
-	[Export]
-	public int Cols { get; set; }
+	public string DataURI {get; set;} = "";
 	[Export]
 	private Vector2I _startingCell = new Vector2I(0, 0);
 	[Export]
@@ -25,6 +21,11 @@ public partial class WFCTileMap : TileMap
 	private RandomNumberGenerator _random;
 	public override void _Ready()
 	{
+		if(Data is null)
+		{
+			var resource = ResourceLoader.Load(DataURI) as WFCTileMapData;
+			Data = resource;
+		}
 		_random = new RandomNumberGenerator();
 		if (_seed > -1)
 			_random.Seed = Convert.ToUInt64(_seed);
@@ -69,7 +70,7 @@ public partial class WFCTileMap : TileMap
 		{
 			for (int j = 0; j < _size.Y; j++)
 			{
-				map[i, j] = TilesDescription.Select(x => x.Id).ToList(); ;
+				map[i, j] = Data.TilesDescription.Select(x => x.Id).ToList(); ;
 			}
 		}
 		return map;
@@ -78,7 +79,7 @@ public partial class WFCTileMap : TileMap
 	private Vector2I Choose(List<int>[,] map)
 	{
 		var cellCord = new Vector2I(0, 0);
-		var minNum = TilesDescription.Length;
+		var minNum = Data.TilesDescription.Length;
 		if (!map.ToEnumerable().Any(x => x.Count < minNum))
 			return new Vector2I(_random.RandiRange(0, _size.X - 1), _random.RandiRange(0, _size.Y - 1));
 		for (int i = 0; i < _size.X; i++)
@@ -106,7 +107,7 @@ public partial class WFCTileMap : TileMap
 	{
 		var cell = map[kernelCenter.X, kernelCenter.Y];
 		//GD.Print(cell.First());
-		var tile = TilesDescription.First(x => x.Id == cell.First());
+		var tile = Data.TilesDescription.First(x => x.Id == cell.First());
 		foreach (var side in sides)
 		{
 			var kernelX = kernelCenter.X + side.X;
@@ -119,7 +120,7 @@ public partial class WFCTileMap : TileMap
 				if (targetCell.Count > 1)
 				{
 					var adjancecies = tile.SideKind[side.ArrEl].Adjacencies;
-					map[kernelX, kernelY] = TilesDescription.Where(x => targetCell.Any(y => y == x.Id) && adjancecies.Any(z => x.SideKind[(side.ArrEl + 2) % 4].Id == z)).Select(x => x.Id).ToList();
+					map[kernelX, kernelY] = Data.TilesDescription.Where(x => targetCell.Any(y => y == x.Id) && adjancecies.Any(z => x.SideKind[(side.ArrEl + 2) % 4].Id == z)).Select(x => x.Id).ToList();
 				}
 
 			}
@@ -135,7 +136,7 @@ public partial class WFCTileMap : TileMap
 				if (targetCell.Count > 1)
 				{
 					var adjancecies = tile.CornerKind[corner.ArrEl].Adjacencies;
-					map[kernelX, kernelY] = TilesDescription.Where(x => targetCell.Any(y => y == x.Id) && adjancecies.Any(z => x.CornerKind[(corner.ArrEl + 2) % 4].Id == z)).Select(x => x.Id).ToList();
+					map[kernelX, kernelY] = Data.TilesDescription.Where(x => targetCell.Any(y => y == x.Id) && adjancecies.Any(z => x.CornerKind[(corner.ArrEl + 2) % 4].Id == z)).Select(x => x.Id).ToList();
 				}
 
 			}
@@ -151,21 +152,34 @@ public partial class WFCTileMap : TileMap
 				var cell = tileMap[i, j];
 				if (cell != null)
 				{
-					var atlasCords = IntToAtlasCords(cell ?? 0);
+					var atlasCords = IntToAtlasCords(cell ?? 0, out int sourceId);
 					GD.Print(atlasCords);
-					this.SetCell(0, new Vector2I(i + _startingCell.X, j + _startingCell.Y), 0, atlasCords);
+					this.SetCell(0, new Vector2I(i + _startingCell.X, j + _startingCell.Y), sourceId, atlasCords);
 				}
 			}
 		}
 	}
 
-	private Vector2I IntToAtlasCords(int i)
+	private Vector2I IntToAtlasCords(int i, out int sourceId)
 	{
 		GD.Print(i);
-		if (TilesDescription.First().Id == 1)
+		if (Data.TilesDescription.First().Id == 1)
 			i--;
-		var X = i % Cols;
-		var Y = (i - X) / Cols;
-		return new Vector2I(X, Y);
+		foreach(var source in Data.SourceData)
+		{
+			if(i >= source.TileCount)
+				i -= source.TileCount;
+			else
+			{
+				sourceId = source.Id;
+				var X = i % source.Cols;
+				var Y = (i - X) / source.Cols;
+				return new Vector2I(X, Y);
+			}
+		}
+		sourceId = 0;
+		return new Vector2I(0,0);
 	}
+	
+	
 }

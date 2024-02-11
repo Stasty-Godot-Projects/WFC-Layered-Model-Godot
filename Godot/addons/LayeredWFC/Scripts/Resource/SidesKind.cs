@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-
+[Tool]
 [GlobalClass, Icon("res://Stats/StatsIcon.svg")]
 public partial class SidesKind: Resource
 {

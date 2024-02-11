@@ -1,3 +1,4 @@
+using Python.Runtime;
 using WFC_Godot.API.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,5 +19,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+PythonEngine.Initialize();
 
 app.Run();

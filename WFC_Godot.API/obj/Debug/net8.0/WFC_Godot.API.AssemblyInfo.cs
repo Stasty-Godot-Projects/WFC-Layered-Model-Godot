@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WFC_Godot.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a404d3cfea042121e7d492865a7fecd1ac60fb9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WFC_Godot.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WFC_Godot.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

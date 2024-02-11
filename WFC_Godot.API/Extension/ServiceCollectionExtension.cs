@@ -1,4 +1,7 @@
-﻿namespace WFC_Godot.API.Extension
+﻿using WFC_Godot.API.Services;
+using WFC_Godot.API.Services.Interfaces;
+
+namespace WFC_Godot.API.Extension
 {
     public static class ServiceCollectionExtension
     {
@@ -8,6 +11,7 @@
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            services.AddScoped<IRecognitionService, RecognitionService>();
         }
     }
 }

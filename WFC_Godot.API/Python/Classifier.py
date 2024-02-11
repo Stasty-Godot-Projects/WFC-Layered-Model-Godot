@@ -68,8 +68,8 @@ class ModelClassifier:
             train_images = train_images.reshape(train_images.shape[0], data[0].shape[1],data[0].shape[1],data[0].shape[-1])
             test_images = test_images.reshape(test_images.shape[0], data[0].shape[1],data[0].shape[1],data[0].shape[-1])
         callback = keras.callbacks.EarlyStopping(monitor='loss',patience=3)
-        trained_Sides = SidesModel.fit(train_images, train_labelsSides, epochs=50, validation_data=(test_images,test_labelsSides), callbacks=[callback])  
-        trained_Corners = CornersModel.fit(train_images, train_labelsCorner, epochs=50, validation_data=(test_images,test_labelsCorner), callbacks=[callback]) 
+        trained_Sides = SidesModel.fit(train_images, train_labelsSides, epochs=3, validation_data=(test_images,test_labelsSides), callbacks=[callback])  
+        trained_Corners = CornersModel.fit(train_images, train_labelsCorner, epochs=3, validation_data=(test_images,test_labelsCorner), callbacks=[callback]) 
 
         SidesModel.save("Sides.h5")
         CornersModel.save("Corners.h5")

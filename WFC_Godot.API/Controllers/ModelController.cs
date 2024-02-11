@@ -10,6 +10,7 @@ namespace WFC_Godot.API.Controllers
     public class ModelController : ControllerBase
     {
         private readonly IRecognitionService _recognitionService;
+        private static byte[] _imageTMP = null;
 
         public ModelController(IRecognitionService recognitionService)
         {
@@ -17,18 +18,19 @@ namespace WFC_Godot.API.Controllers
         }
 
         [HttpPost]
-        [Route("CreateModel")]
-        public async Task<IActionResult> CreateModel([FromForm] IFormFile image, [FromBody] TileDescriptionEncapsulation tileDescriptions)
+        [Route("AddImageForTheModel")]
+        public async Task<IActionResult> AddImageForTheModel([FromForm(Name = "file")] IFormFile image)
         {
             try
             {
                 if (image != null)
                 {
-                    if (CreateModelJob.IsUnderway())
-                        return BadRequest("Model is under inder training");
-                    var job = new CreateModelJob();
-                    job.Exec(image, tileDescriptions.TileDescriptions, tileDescriptions.TileSize);
-                    return Ok("Model is processes");
+                    using(var memoryStream = new MemoryStream())
+                    {
+                        image.CopyTo(memoryStream);
+                        _imageTMP = memoryStream.ToArray();
+                    }
+                    return Ok("Model is ready to start with labels");
                 }
                 else
                     return BadRequest("No data");
@@ -39,13 +41,35 @@ namespace WFC_Godot.API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("CreateModel")]
+        public async Task<IActionResult> CreateModel([FromBody] TileDescriptionEncapsulation tileDescriptions)
+        {
+            try
+            {
+                if(_imageTMP == null)
+                    return BadRequest("No image to process");
+                if (CreateModelJob.IsUnderway())
+                    return BadRequest("Model is under inder training");
+                var job = new CreateModelJob();
+                var image = _imageTMP;
+                _imageTMP = null;
+                job.Exec(image, tileDescriptions.TileDescriptions, tileDescriptions.TileSize);
+                return Ok("Model is processes");
+            }
+            catch (Exception exception)
+            {
+                return BadRequest($"Error: {exception.Message}");
+            }
+        }
+
         [HttpGet]
-        [Route("GetIsModelTrained")]
+        [Route("GetIsModelTrainedNow")]
         public async Task<bool> GetIsModelTrained() => CreateModelJob.IsUnderway();
 
         [HttpPost]
-        [Route("Recognize")]
-        public async Task<ActionResult<IEnumerable<TileDescription>>> Recognize([FromForm] IFormFile image, [FromQuery] int tileSize)
+        [Route("Recognize/{tileSize}")]
+        public async Task<ActionResult<IEnumerable<TileDescription>>> Recognize([FromForm(Name = "file")] IFormFile image, int tileSize)
         {
             try
             {

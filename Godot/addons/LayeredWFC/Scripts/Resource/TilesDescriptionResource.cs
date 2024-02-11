@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-
+[Tool]
 [GlobalClass, Icon("res://Stats/StatsIcon.svg")]
 public partial class TilesDescriptionResource: Resource
 {
